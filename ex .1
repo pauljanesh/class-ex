@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<my-box></my-box>
+
+<script>
+class MyBox extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.innerHTML = `
+      <p id="text">Hello!</p>
+      <button>Click</button>
+    `;
+    const btn = this.shadowRoot.querySelector('button');
+    const text = this.shadowRoot.querySelector('#text');
+    btn.addEventListener('click', () => {
+      text.textContent = 'Button clicked!';
+    });
+  }
+}
+customElements.define('my-box', MyBox);
+</script>
+
+</body>
+</html>

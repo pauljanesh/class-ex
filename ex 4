@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html>
-<body>
-<input id="inputStr" placeholder="3 5 : 1 2 3 4 5 6 7 8 9" size="40">
-<button onclick="(()=>{let[s,t]=inputStr.value.split(':').map(x=>x.trim().split(' ').map(Number));output.textContent=t.filter(y=>s.some(z=>y%z==0)).reduce((a,b)=>a+b,0)+' : '+s.join(' ')+' : '+t.join(' ');})()">Compute</button>
-<p id="output"></p>
-</body>
-</html>
+// Function to process the input string
+function factorMultiple(input) {
+    // Split input into factors and multiples
+    const [factorStr, multipleStr] = input.split(':').map(s => s.trim());
 
+    // Convert strings to arrays of numbers
+    const factors = factorStr.split(' ').map(Number);
+    const multiples = multipleStr.split(' ').map(Number);
+
+    // Calculate sum of factors + number of multiples
+    const result = factors.reduce((sum, f) => sum + f, 0) + multiples.length;
+
+    // Return formatted string
+    return `${result} : ${factors.join(' ')} : ${multiples.join(' ')}`;
+}

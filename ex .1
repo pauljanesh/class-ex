@@ -1,32 +1,20 @@
-<input id="weight" placeholder="Enter weight (kg)">
-<button onclick="check()">Check</button>
 
-<input id="removed" placeholder="Remove (kg)" style="display:none;">
-<button id="remB" onclick="remove()" style="display:none;">Remove</button>
-
-<script>
-let check = () => {
-  let w = +document.getElementById('weight').value;
-  if (!w) return alert("Enter weight!");
-
-  alert(`Checking baggage: ${w}kg`);
-  if (w > 15) {
-    alert("Overweight! Remove some items.");
-    removed.style.display = remB.style.display = 'inline';
-  } else {
-    alert("OK to proceed!");
-    removed.style.display = remB.style.display = 'none';
+const check=()=>{
+  let w=+weight.value;
+  if(!w){msg.textContent='Enter a valid weight!';return;}
+  if(w>15){
+    msg.textContent=`Overweight (${w}kg)! Please remove some.`;
+    removed.style.display=remB.style.display='inline';
+  }else{
+    msg.textContent=`OK (${w}kg) — you may proceed.`;
+    removed.style.display=remB.style.display='none';
   }
-}
+};
 
-let remove = () => {
-  let w = +weight.value, r = +removed.value;
-  if (!r) return alert("Enter amount to remove!");
-  w -= r; weight.value = w;
-  alert(`New weight: ${w}kg`);
-  if (w <= 15) {
-    alert("Now OK to proceed!");
-    removed.style.display = remB.style.display = 'none';
-  }
-}
-</script>
+const remove=()=>{
+  let w=+weight.value - +removed.value;
+  if(w<0){msg.textContent='Cannot remove more than current weight!';return;}
+  weight.value=w;
+  msg.textContent=w>15?`Still heavy (${w}kg). Remove more.`:`OK now (${w}kg).`;
+  if(w<=15)removed.style.display=remB.style.display='none';
+};

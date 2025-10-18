@@ -1,29 +1,46 @@
-import java.util.Arrays;
-import java.util.List;
 
-class EulerListsShort {
-    static int listEuler1(int a,int b,List<Integer> l){
-        int s=0;
-        for(int x:l) if(x%a==0||x%b==0) s+=x;
-        return s;
+// 1: takes two numbers and a list
+function listEuler1(a, b, list) {
+  let s = 0;
+  for (let x of list) {
+    if (x % a === 0 || x % b === 0) {
+      s += x;
     }
-
-    static int listEuler2(List<Integer> aList,List<Integer> l){
-        int s=0;
-        for(int x:l) for(int a:aList) if(x%a==0){s+=x; break;}
-        return s;
-    }
-
-    static int listEuler3(List<Integer> aList,List<Integer> l){
-        int s=0;
-        for(int x:l) for(int a:aList) if(x%a==0){s+=x; break;}
-        return s;
-    }
-
-    public static void main(String[] args){
-        List<Integer> l = Arrays.asList(1,2,3,4,5,6,7,9,10,10,10);
-        System.out.println(listEuler1(2,3,l));       // 55
-        System.out.println(listEuler2(Arrays.asList(2,3),l));   // 55
-        System.out.println(listEuler3(Arrays.asList(2,3,5),l)); // 75
-    }
+  }
+  return s;
 }
+
+// 2: takes two lists
+function listEuler2(aList, list) {
+  let s = 0;
+  for (let x of list) {
+    for (let a of aList) {
+      if (x % a === 0) {
+        s += x;
+        break; // avoid counting same number multiple times
+      }
+    }
+  }
+  return s;
+}
+
+// 3: same logic, different parameter naming
+function listEuler3(aList, list) {
+  let s = 0;
+  for (let x of list) {
+    for (let a of aList) {
+      if (x % a === 0) {
+        s += x;
+        break;
+      }
+    }
+  }
+  return s;
+}
+
+// Main
+const l = [1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10];
+
+console.log(listEuler1(2, 3, l));              // 66
+console.log(listEuler2([2, 3], l));            // 66
+console.log(listEuler3([2, 3, 5], l));         // 87

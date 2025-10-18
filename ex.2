@@ -1,20 +1,16 @@
-class Euler {
-  static void euler1() {
-    int s=0;
-    for(int i=1;i<1000;i++)
-      if(i%3==0||i%5==0) s+=i;
-    System.out.println(s);
-  }
+// ex1 → Project Euler Problem 1: sum of all multiples of 3 or 5 below 1000
+let euler1=()=>{
+  let sum=0;
+  for(let i=1;i<1000;i++) if(i%3==0||i%5==0) sum+=i;
+  alert(sum);
+};
 
-  static void eulerCustom(int a,int b,int n){
-    int s=0;
-    for(int i=1;i<n;i++)
-      if(i%a==0||i%b==0) s+=i;
-    System.out.println(s);
-  }
-
-  public static void main(String[] args){
-    euler1();           // Euler Q1
-    eulerCustom(3,5,20); // Custom test
-  }
-}
+// ex2 → custom version: sum of all multiples of a or b less than n
+let eulerCustom=()=>{
+  let a=+prompt("Enter first divisor (a):");
+  let b=+prompt("Enter second divisor (b):");
+  let n=+prompt("Enter limit (n):");
+  let sum=0;
+  for(let i=1;i<n;i++) if(i%a==0||i%b==0) sum+=i;
+  alert(sum);
+};

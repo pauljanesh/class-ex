@@ -1,10 +1,10 @@
-function parseSafe(str) {
+export function parseSafe(str) {
   const val = parseInt(str);
-  if (isNaN(val)) throw "NaN";
+  if (isNaN(val)) throw new Error('NaN');
   return val;
 }
 
-function ex4_v1(input) {
+export function ex4_v1(input) {
   try {
     const [factorsPart, multiplesPart] = input.split(":").map(s => s.trim());
     const factors = factorsPart.split(" ").map(parseSafe);
@@ -15,7 +15,7 @@ function ex4_v1(input) {
       .reduce((a, b) => a + b, 0);
 
     return `${result} : ${factorsPart} : ${multiplesPart}`;
-  } catch {
+  } catch (e) {
     return `corrupt : ${input}`;
   }
 }
